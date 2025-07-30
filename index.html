@@ -146,6 +146,7 @@
             font-weight: bold;
             border: 2px solid #FFD700;
             box-shadow: 0 4px 15px rgba(123, 31, 162, 0.4);
+            touch-action: manipulation;
         }
 
         .teleport-btn:hover {
@@ -205,6 +206,7 @@
             border-radius: 20px;
             border: 3px solid #FFD700;
             min-width: 280px;
+            max-width: 90vw;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
             overflow-y: auto;
@@ -287,10 +289,8 @@
             }
         }
 
-        .sound-toggle {
+        .sound-toggle, .memory-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
             background: rgba(0,0,0,0.8);
             border: 2px solid #FFD700;
             color: #FFD700;
@@ -304,6 +304,17 @@
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(10px);
+            touch-action: manipulation;
+        }
+
+        .sound-toggle {
+            top: 20px;
+            right: 20px;
+        }
+
+        .memory-btn {
+            bottom: 20px;
+            right: 20px;
         }
 
         .setup-screen {
@@ -364,7 +375,7 @@
 
         .avatar-selection {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
@@ -381,6 +392,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            touch-action: manipulation;
         }
 
         .avatar-option:hover {
@@ -409,6 +421,7 @@
             border: 3px solid #FFD700;
             box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
             margin-top: 20px;
+            touch-action: manipulation;
         }
 
         .start-btn:hover {
@@ -515,6 +528,7 @@
             animation: achievementPop 3s ease-in-out;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
             text-align: center;
+            max-width: 90vw;
         }
 
         @keyframes achievementPop {
@@ -533,11 +547,30 @@
             pointer-events: none;
             overflow: hidden;
             display: none;
+            z-index: 10;
+        }
+
+        .rain {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: rgba(255,255,255,0.8);
+            transform: rotate(20deg);
+            animation: rainFall 0.5s linear infinite;
+        }
+
+        .snow {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: snowFall 6s linear infinite;
         }
 
         @keyframes rainFall {
-            from { transform: translateY(-100vh); }
-            to { transform: translateY(100vh); }
+            from { transform: translateY(-100vh) rotate(20deg); }
+            to { transform: translateY(100vh) rotate(20deg); }
         }
 
         @keyframes snowFall {
@@ -545,10 +578,48 @@
             100% { transform: translateY(100vh) translateX(var(--dx)); }
         }
 
-        .memory-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+        @media (max-width: 600px) {
+            .location-info {
+                padding: 20px;
+                margin: 10px;
+                max-width: 90vw;
+            }
+
+            .location-title {
+                font-size: 2em;
+            }
+
+            .location-description {
+                font-size: 1em;
+            }
+
+            .teleport-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .player-profile {
+                min-width: 200px;
+                padding: 15px;
+            }
+
+            .avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+            }
+
+            .player-name {
+                font-size: 1.2em;
+            }
+
+            .setup-form {
+                padding: 20px;
+            }
+
+            .setup-title {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
@@ -610,7 +681,7 @@
         <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" style="display: none;">🔊</button>
 
         <!-- Memory Challenge Button -->
-        <button class="memory-btn teleport-btn" id="memoryButton" onclick="startMemoryChallenge()" style="display: none;">🧠 Memory</button>
+        <button class="memory-btn" id="memoryButton" onclick="startMemoryChallenge()" style="display: none;">🧠</button>
 
         <!-- Weather Effect -->
         <div class="weather-effect" id="weatherEffect"></div>
@@ -646,7 +717,7 @@
                 <p class="location-description">
                     Towering shelves filled with ancient spellbooks and magical tomes surround you. 
                     The air smells of old parchment and mysterious potions. Some books flutter their 
-                    pages when you walk by, eager to share their secrets. Floating books drift lazily through the air.
+                    pages when you walk by, eager to share their secrets.
                 </p>
                 <div class="teleport-buttons">
                     <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
@@ -666,7 +737,7 @@
                 <p class="location-description">
                     Bubbling cauldrons and mysterious ingredients fill this dimly lit dungeon classroom. 
                     Shelves lined with jars containing pickled creatures and rare herbs create an 
-                    atmosphere of magical experimentation. The air shimmers with potion vapors and glowing bubbles.
+                    atmosphere of magical experimentation.
                 </p>
                 <div class="teleport-buttons">
                     <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
@@ -686,7 +757,7 @@
                 <p class="location-description">
                     The vast green field stretches before you with golden goalposts reaching toward 
                     the sky. You can almost hear the cheers of spectators and see the golden snitch 
-                    glinting in the sunlight. Broomsticks zoom overhead in practice flights.
+                    glinting in the sunlight.
                 </p>
                 <div class="teleport-buttons">
                     <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
@@ -706,7 +777,7 @@
                 <p class="location-description">
                     Dark, ancient trees tower above you, their branches creating a canopy that blocks 
                     most of the sunlight. Strange sounds echo through the forest, and glowing eyes 
-                    peer from the shadows. This magical place is full of mystery and wonder.
+                    peer from the shadows.
                 </p>
                 <div class="teleport-buttons">
                     <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
@@ -726,7 +797,7 @@
                 <p class="location-description">
                     A breathtaking underground cavern filled with luminescent crystals that pulse with 
                     magical energy. The walls shimmer with blues and purples, and the air hums with 
-                    ancient magic. This is where the most powerful spells are born from crystal energy.
+                    ancient magic.
                 </p>
                 <div class="teleport-buttons">
                     <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
@@ -750,6 +821,7 @@
         let memorySequence = [];
         let memoryIndex = 0;
         let dailyQuests = [];
+        let weatherTimeout = null;
 
         const locations = {
             'great-hall': 'The Great Hall',
@@ -775,15 +847,17 @@
         let gameStats = {
             sessionStart: Date.now(),
             recentTeleports: [],
-            locationVisitCounts: {},
+            locationVisitCounts: { 'great-hall': 1 },
             lastAchievements: new Set()
         };
 
-        // Audio elements for teleport and background sounds
+        // Audio elements with error handling
         const teleportSound = new Audio('https://www.soundjay.com/buttons/button-09.mp3');
         const backgroundMusic = new Audio('https://www.bensound.com/bensound-music/bensound-slowmotion.mp3');
         backgroundMusic.loop = true;
         backgroundMusic.volume = 0.3;
+        teleportSound.onerror = () => console.warn('Teleport sound failed to load');
+        backgroundMusic.onerror = () => console.warn('Background music failed to load');
 
         // Initialize game
         function startGame() {
@@ -796,12 +870,15 @@
             document.getElementById('setupScreen').style.display = 'none';
             document.getElementById('playerProfile').style.display = 'block';
             document.getElementById('soundToggle').style.display = 'flex';
-            document.getElementById('memoryButton').style.display = 'block';
-            gameStats.locationVisitCounts['great-hall'] = 1;
+            document.getElementById('memoryButton').style.display = 'flex';
             createMagicParticles();
             createLocationEffects('great-hall');
             if (soundEnabled) {
-                backgroundMusic.play();
+                try {
+                    backgroundMusic.play().catch(err => console.warn('Background music play failed:', err));
+                } catch (err) {
+                    console.warn('Error playing background music:', err);
+                }
             }
             generateDailyQuests();
             updateTimeDisplay();
@@ -818,22 +895,34 @@
                 option.classList.remove('selected');
             });
             const selectedOption = document.querySelector(`.avatar-option[data-avatar="${avatar}"]`);
-            selectedOption.classList.add('selected');
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+            }
         }
 
         // Teleport to a new location
         function teleportTo(locationId) {
-            if (locationId === currentLocation) return;
+            if (locationId === currentLocation || !locations[locationId]) return;
 
             // Play teleport effect and sound
             createTeleportEffect();
             if (soundEnabled) {
-                teleportSound.play();
+                try {
+                    teleportSound.play().catch(err => console.warn('Teleport sound play failed:', err));
+                } catch (err) {
+                    console.warn('Error playing teleport sound:', err);
+                }
             }
 
             // Update current location
             document.getElementById(currentLocation).classList.remove('active');
-            document.getElementById(locationId).classList.add('active');
+            const newLocation = document.getElementById(locationId);
+            if (newLocation) {
+                newLocation.classList.add('active');
+            } else {
+                console.error(`Location ${locationId} not found`);
+                return;
+            }
             currentLocation = locationId;
 
             // Update stats
@@ -841,7 +930,7 @@
             visitedLocations.add(locationId);
             gameStats.locationVisitCounts[locationId] = (gameStats.locationVisitCounts[locationId] || 0) + 1;
             gameStats.recentTeleports.push({ time: Date.now(), location: locations[locationId] });
-            if (gameStats.recentTeleports.length > 20) {
+            if (gameStats.recentTeleports.length > 5) {
                 gameStats.recentTeleports.shift();
             }
             document.getElementById('teleportCount').textContent = teleportCount;
@@ -857,13 +946,17 @@
             if (inMemoryChallenge) {
                 if (locationId === memorySequence[memoryIndex]) {
                     memoryIndex++;
-                    if (memoryIndex === 4) {
+                    if (memoryIndex === memorySequence.length) {
                         showAchievement("🧠 Memory Master! Sequence completed!");
                         inMemoryChallenge = false;
+                        memorySequence = [];
+                        memoryIndex = 0;
                     }
                 } else {
-                    showAchievement("❌ Memory failed! Try again.");
+                    showAchievement("❌ Memory Failed! Try again.");
                     inMemoryChallenge = false;
+                    memorySequence = [];
+                    memoryIndex = 0;
                 }
             }
 
@@ -876,17 +969,19 @@
             checkAchievements();
 
             // Random weather
-            if (Math.random() < 0.3) {
+            if (!weatherTimeout && Math.random() < 0.2) {
                 const weathers = ['rain', 'snow'];
-                createWeather(weathers[Math.floor(Math.random() * 2)]);
+                createWeather(weathers[Math.floor(Math.random() * weathers.length)]);
             }
         }
 
         // Update magic level based on teleport count
         function updateMagicLevel() {
             let level = 'Apprentice';
-            if (teleportCount >= 10) {
+            if (teleportCount >= 15) {
                 level = 'Master Wizard';
+            } else if (teleportCount >= 10) {
+                level = 'Expert';
             } else if (teleportCount >= 5) {
                 level = 'Journeyman';
             } else if (teleportCount >= 2) {
@@ -898,6 +993,8 @@
         // Create magical particles
         function createMagicParticles() {
             const particlesContainer = document.getElementById('magicParticles');
+            if (!particlesContainer) return;
+            particlesContainer.innerHTML = '';
             for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
@@ -911,14 +1008,18 @@
         function createTeleportEffect() {
             const effect = document.createElement('div');
             effect.classList.add('teleport-effect');
-            document.querySelector('.game-container').appendChild(effect);
-            setTimeout(() => effect.remove(), 1000);
+            const container = document.querySelector('.game-container');
+            if (container) {
+                container.appendChild(effect);
+                setTimeout(() => effect.remove(), 1000);
+            }
         }
 
         // Create location-specific effects
         function createLocationEffects(locationId) {
             const effectsContainer = document.getElementById(`${locationId}Effects`);
-            effectsContainer.innerHTML = ''; // Clear previous effects
+            if (!effectsContainer) return;
+            effectsContainer.innerHTML = '';
 
             switch (locationId) {
                 case 'library':
@@ -968,18 +1069,22 @@
                         effectsContainer.appendChild(sparkle);
                     }
                     break;
-                default:
-                    // No specific effects for Great Hall
-                    break;
             }
         }
 
         // Toggle sound
         function toggleSound() {
             soundEnabled = !soundEnabled;
-            document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+            const soundToggle = document.getElementById('soundToggle');
+            if (soundToggle) {
+                soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
+            }
             if (soundEnabled) {
-                backgroundMusic.play();
+                try {
+                    backgroundMusic.play().catch(err => console.warn('Background music play failed:', err));
+                } catch (err) {
+                    console.warn('Error playing background music:', err);
+                }
             } else {
                 backgroundMusic.pause();
             }
@@ -988,43 +1093,38 @@
         // Check and display achievements
         function checkAchievements() {
             achievements.forEach(ach => {
+                if (gameStats.lastAchievements.has(ach.message)) return;
+
                 if (ach.trigger !== undefined) {
-                    let triggerMet = false;
-                    if ([1, 5, 10, 15].includes(ach.trigger) && ach.trigger === teleportCount) {
-                        triggerMet = true;
-                    } else if ([3, 6].includes(ach.trigger) && ach.trigger === visitedLocations.size) {
-                        triggerMet = true;
-                    }
-                    if (triggerMet && !gameStats.lastAchievements.has(ach.message)) {
+                    if ((ach.trigger === teleportCount && [1, 5, 10, 15].includes(ach.trigger)) ||
+                        (ach.trigger === visitedLocations.size && [3, 6].includes(ach.trigger))) {
                         showAchievement(ach.message);
                         gameStats.lastAchievements.add(ach.message);
                     }
                 } else if (ach.special) {
-                    let unlocked = false;
                     switch (ach.special) {
                         case 'speed':
                             if (gameStats.recentTeleports.length >= 5) {
                                 const times = gameStats.recentTeleports.slice(-5).map(t => t.time);
                                 if (times[4] - times[0] <= 30000) {
-                                    unlocked = true;
+                                    showAchievement(ach.message);
+                                    gameStats.lastAchievements.add(ach.message);
                                 }
                             }
                             break;
                         case 'night_owl':
                             const hour = new Date().getHours();
                             if (hour >= 0 && hour < 6) {
-                                unlocked = true;
+                                showAchievement(ach.message);
+                                gameStats.lastAchievements.add(ach.message);
                             }
                             break;
                         case 'library_lover':
                             if ((gameStats.locationVisitCounts['library'] || 0) >= 5) {
-                                unlocked = true;
+                                showAchievement(ach.message);
+                                gameStats.lastAchievements.add(ach.message);
                             }
                             break;
-                    }
-                    if (unlocked && !gameStats.lastAchievements.has(ach.message)) {
-                        showAchievement(ach.message);
-                        gameStats.lastAchievements.add(ach.message);
                     }
                 }
             });
@@ -1058,40 +1158,42 @@
                 icon = '🌆';
                 tod = 'Evening';
             }
-            document.getElementById('timeDisplay').innerHTML = `${icon} ${tod}`;
+            const timeDisplay = document.getElementById('timeDisplay');
+            if (timeDisplay) {
+                timeDisplay.innerHTML = `${icon} ${tod}`;
+            }
+            checkAchievements(); // Check for night_owl achievement
         }
 
         // Update location history
         function updateHistory() {
             const hist = document.getElementById('recentHistory');
+            if (!hist) return;
             hist.innerHTML = '<div class="stat-label">Recent Teleports:</div>' + 
                 gameStats.recentTeleports.slice(-5).reverse().map(t => 
-                    `<div>${new Date(t.time).toLocaleTimeString()} - ${t.location}</div>`
+                    `<div>${new Date(t.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })} - ${t.location}</div>`
                 ).join('');
         }
 
         // Update location stats
         function updateLocationStats() {
             const ls = document.getElementById('locationStats');
+            if (!ls) return;
             ls.innerHTML = '<div class="stat-label">Location Visits:</div>' + 
-                Object.entries(gameStats.locationVisitCounts).map(([loc, count]) => 
-                    `<div>${locations[loc]}: ${count}</div>`
-                ).join('');
+                Object.entries(gameStats.locationVisitCounts)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([loc, count]) => `<div>${locations[loc]}: ${count}</div>`)
+                    .join('');
         }
 
         // Generate daily quests
         function generateDailyQuests() {
-            const questTypes = [
-                { type: 'teleport', goal: Math.floor(Math.random() * 5) + 3, desc: (goal) => `Teleport ${goal} times`, completed: false },
-                { type: 'visit_unique', goal: Math.floor(Math.random() * 3) + 2, desc: (goal) => `Visit ${goal} unique locations`, completed: false },
-                { type: 'visit_specific', location: randomLocation(), goal: Math.floor(Math.random() * 3) + 2, completed: false }
-            ];
-            dailyQuests = questTypes.map(q => {
-                if (q.type === 'visit_specific') {
-                    q.desc = `Visit ${locations[q.location]} ${q.goal} times`;
-                } else {
-                    q.desc = q.desc(q.goal);
-                }
+            dailyQuests = [
+                { type: 'teleport', goal: Math.floor(Math.random() * 5) + 3, desc: (goal) => `Teleport ${goal} times`, completed: false, progress: 0 },
+                { type: 'visit_unique', goal: Math.floor(Math.random() * 3) + 2, desc: (goal) => `Visit ${goal} unique locations`, completed: false, progress: 0 },
+                { type: 'visit_specific', location: randomLocation(), goal: Math.floor(Math.random() * 3) + 2, completed: false, progress: 0 }
+            ].map(q => {
+                q.desc = q.type === 'visit_specific' ? `Visit ${locations[q.location]} ${q.goal} times` : q.desc(q.goal);
                 return q;
             });
         }
@@ -1105,22 +1207,27 @@
         // Update quests display
         function updateQuestsDisplay() {
             const qd = document.getElementById('dailyQuests');
-            qd.innerHTML = '<div class="stat-label">Quests:</div>' + dailyQuests.map(q => {
-                let prog = 0;
-                if (q.type === 'teleport') prog = teleportCount;
-                else if (q.type === 'visit_unique') prog = visitedLocations.size;
-                else if (q.type === 'visit_specific') prog = gameStats.locationVisitCounts[q.location] || 0;
-                if (prog >= q.goal && !q.completed) {
+            if (!qd) return;
+            dailyQuests.forEach(q => {
+                if (q.type === 'teleport') q.progress = teleportCount;
+                else if (q.type === 'visit_unique') q.progress = visitedLocations.size;
+                else if (q.type === 'visit_specific') q.progress = gameStats.locationVisitCounts[q.location] || 0;
+                if (q.progress >= q.goal && !q.completed) {
                     q.completed = true;
                     showAchievement(`Quest Completed: ${q.desc}! 🎖️`);
                 }
-                return `<div>${q.desc} (${prog}/${q.goal}) ${q.completed ? '✅' : ''}</div>`;
-            }).join('');
+            });
+            qd.innerHTML = '<div class="stat-label">Daily Quests:</div>' + 
+                dailyQuests.map(q => 
+                    `<div>${q.desc} (${q.progress}/${q.goal})${q.completed ? ' ✅' : ''}</div>`
+                ).join('');
         }
 
         // Create weather effect
         function createWeather(type) {
+            if (weatherTimeout) return;
             const container = document.getElementById('weatherEffect');
+            if (!container) return;
             container.innerHTML = '';
             container.style.display = 'block';
             for (let i = 0; i < 50; i++) {
@@ -1129,25 +1236,22 @@
                 drop.style.left = `${Math.random() * 100}%`;
                 drop.style.animationDelay = `${Math.random() * 2}s`;
                 drop.style.opacity = Math.random() * 0.5 + 0.3;
+                drop.classList.add(type);
                 if (type === 'rain') {
                     drop.style.width = '2px';
                     drop.style.height = `${Math.random() * 20 + 10}px`;
-                    drop.style.background = 'rgba(255,255,255,0.8)';
-                    drop.style.transform = 'rotate(20deg)';
-                    drop.style.animation = `rainFall ${Math.random() * 0.5 + 0.3}s linear infinite`;
                 } else if (type === 'snow') {
                     const size = Math.random() * 5 + 3;
                     drop.style.width = `${size}px`;
                     drop.style.height = `${size}px`;
-                    drop.style.background = 'white';
-                    drop.style.borderRadius = '50%';
-                    drop.style.--dx = `${Math.random() * 50 - 25}px`;
-                    drop.style.animation = `snowFall ${Math.random() * 5 + 5}s linear infinite`;
+                    drop.style.setProperty('--dx', `${Math.random() * 50 - 25}px`);
                 }
                 container.appendChild(drop);
             }
-            setTimeout(() => {
+            weatherTimeout = setTimeout(() => {
                 container.style.display = 'none';
+                container.innerHTML = '';
+                weatherTimeout = null;
             }, 30000);
         }
 
@@ -1156,19 +1260,34 @@
             if (inMemoryChallenge) return;
             inMemoryChallenge = true;
             memorySequence = [];
+            const availableLocations = Object.keys(locations).filter(loc => loc !== currentLocation);
             for (let i = 0; i < 4; i++) {
-                let loc = randomLocation();
-                while (loc === currentLocation || (i > 0 && loc === memorySequence[i - 1])) {
-                    loc = randomLocation();
-                }
-                memorySequence.push(loc);
+                const randomIndex = Math.floor(Math.random() * availableLocations.length);
+                memorySequence.push(availableLocations[randomIndex]);
+                availableLocations.splice(randomIndex, 1);
             }
-            alert(`Remember the sequence: ${memorySequence.map(l => locations[l]).join(' -> ')}`);
+            showAchievement(`Memorize this sequence: ${memorySequence.map(l => locations[l]).join(' -> ')}`, 5000);
             memoryIndex = 0;
         }
 
         // Initialize default avatar selection
         selectAvatar('🔮');
+
+        // Add touch event support
+        document.addEventListener('touchstart', function(event) {
+            if (event.target.classList.contains('teleport-btn')) {
+                event.preventDefault();
+                teleportTo(event.target.getAttribute('onclick').match(/'([^']+)'/)[1]);
+            } else if (event.target.classList.contains('avatar-option')) {
+                selectAvatar(event.target.getAttribute('data-avatar'));
+            } else if (event.target.classList.contains('start-btn')) {
+                startGame();
+            } else if (event.target.classList.contains('sound-toggle')) {
+                toggleSound();
+            } else if (event.target.classList.contains('memory-btn')) {
+                startMemoryChallenge();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
