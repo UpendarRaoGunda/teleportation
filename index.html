@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Magical Teleportation Adventure</title>
+    <title>Enhanced STEM Teleportation Adventure</title>
     <style>
         * {
             margin: 0;
@@ -52,15 +52,15 @@
         }
 
         /* Enhanced Location Backgrounds */
-        .great-hall {
+        .ed-gamers {
             background: 
                 radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(255, 140, 0, 0.2) 0%, transparent 50%),
                 linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                radial-gradient(circle at center, #8B4513, #654321);
+                radial-gradient(circle at center, #FFEB3B, #FF5722);
         }
 
-        .library {
+        .asimoverse {
             background: 
                 radial-gradient(circle at 10% 30%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 90% 70%, rgba(75, 0, 130, 0.2) 0%, transparent 50%),
@@ -68,35 +68,27 @@
                 linear-gradient(45deg, #2F1B14, #8B4513);
         }
 
-        .potions-class {
+        .einstein-lab {
             background: 
                 radial-gradient(circle at 20% 60%, rgba(0, 255, 0, 0.2) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
                 linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                radial-gradient(circle, #1B5E20, #388E3C);
+                radial-gradient(circle, #2196F3, #0D47A1);
         }
 
-        .quidditch-field {
+        .k-space {
             background: 
                 radial-gradient(circle at 50% 10%, rgba(255, 215, 0, 0.4) 0%, transparent 30%),
                 linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                linear-gradient(to bottom, #87CEEB, #228B22);
+                linear-gradient(to bottom, #000000, #1A237E);
         }
 
-        .forbidden-forest {
+        .shop {
             background: 
                 radial-gradient(circle at 40% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
                 radial-gradient(circle at 60% 70%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
                 linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                radial-gradient(circle, #0D4F0C, #1B5E20);
-        }
-
-        .crystal-cave {
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(0, 191, 255, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(147, 0, 211, 0.3) 0%, transparent 50%),
-                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                linear-gradient(135deg, #2C3E50, #4A6741);
+                radial-gradient(circle, #4CAF50, #2E7D32);
         }
 
         .location-info {
@@ -124,6 +116,33 @@
             line-height: 1.6;
             margin-bottom: 25px;
             color: #E0E0E0;
+        }
+
+        .visit-btn {
+            background: linear-gradient(45deg, #0288D1, #03A9F4);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            border: 2px solid #FFD700;
+            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .visit-btn:hover {
+            background: linear-gradient(45deg, #039BE5, #29B6F6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(2, 136, 209, 0.6);
+            border-color: #FFF;
+        }
+
+        .visit-btn:active {
+            transform: translateY(0) scale(0.98);
         }
 
         .teleport-buttons {
@@ -445,7 +464,7 @@
             100% { transform: translateY(-100px) scale(0); opacity: 0; }
         }
 
-        .flying-snitch {
+        .flying-rocket {
             position: absolute;
             font-size: 1.5em;
             color: #FFD700;
@@ -460,13 +479,13 @@
             100% { transform: translateX(-100px) translateY(50px); }
         }
 
-        .glowing-eyes {
+        .glowing-items {
             position: absolute;
             width: 10px;
             height: 10px;
-            background: #ff0000;
+            background: #FFD700;
             border-radius: 50%;
-            box-shadow: 0 0 20px #ff0000;
+            box-shadow: 0 0 20px #FFD700;
             animation: glowEyes 3s infinite alternate;
         }
 
@@ -475,14 +494,14 @@
             100% { opacity: 1; }
         }
 
-        .crystal-sparkles {
+        .game-sparkles {
             position: absolute;
             width: 6px;
             height: 6px;
-            background: #00BFFF;
+            background: #FFEB3B;
             border-radius: 50%;
             animation: sparkle 2s infinite ease-in-out;
-            box-shadow: 0 0 15px #00BFFF;
+            box-shadow: 0 0 15px #FFEB3B;
         }
 
         @keyframes sparkle {
@@ -519,11 +538,11 @@
     <div class="game-container">
         <!-- Setup Screen -->
         <div class="setup-screen" id="setupScreen">
-            <h1 class="setup-title">🏰 Create Your Wizard Profile ✨</h1>
+            <h1 class="setup-title">🧑‍🔬 Create Your STEM Explorer Profile ✨</h1>
             <div class="setup-form">
                 <div class="form-group">
-                    <label class="form-label">Enter Your Wizard Name:</label>
-                    <input type="text" id="playerName" class="name-input" placeholder="Young Wizard" maxlength="20">
+                    <label class="form-label">Enter Your Explorer Name:</label>
+                    <input type="text" id="playerName" class="name-input" placeholder="Young Explorer" maxlength="20">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Choose Your Avatar:</label>
@@ -546,7 +565,7 @@
         <div class="player-profile" id="playerProfile" style="display: none;">
             <div class="profile-header">
                 <div class="avatar" id="playerAvatar">🔮</div>
-                <div class="player-name" id="displayName">Young Wizard</div>
+                <div class="player-name" id="displayName">Young Explorer</div>
             </div>
             <div class="stat-item">
                 <span class="stat-label">Teleportations:</span>
@@ -557,8 +576,8 @@
                 <span id="locationCount">1</span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">Magic Level:</span>
-                <span id="magicLevel">Apprentice</span>
+                <span class="stat-label">STEM Level:</span>
+                <span id="stemLevel">Apprentice Explorer</span>
             </div>
         </div>
 
@@ -568,150 +587,119 @@
         <!-- Magic Particles -->
         <div class="magic-particles" id="magicParticles"></div>
 
-        <!-- Great Hall -->
-        <div class="location great-hall active" id="great-hall">
-            <div class="location-special-effects" id="greatHallEffects"></div>
+        <!-- EdGamers -->
+        <div class="location ed-gamers active" id="ed-gamers">
+            <div class="location-special-effects" id="edGamersEffects"></div>
             <div class="location-info">
-                <h2 class="location-title">🏰 The Great Hall</h2>
+                <h2 class="location-title">🎮 EdGamers</h2>
                 <p class="location-description">
-                    Welcome to the magnificent Great Hall! The enchanted ceiling shows the sky above, 
-                    and floating candles light the long tables where students feast. You can hear the 
-                    gentle chatter of fellow wizards and the occasional hoot of an owl.
+                    EdGamers offers a platform where users can create their own games, design characters, and craft adventures, fostering creativity in a STEM-related context. The games integrate learning through play, turning math, science, and art into engaging quests that enhance knowledge with each level completed. This approach provides educational value by combining imaginative exploration with skill-building in STEM fields.
                 </p>
+                <button class="visit-btn" onclick="window.open('https://games.curiousatoms.com/index.html', '_blank')">Visit Site</button>
                 <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('library')">📚 Library</button>
-                    <button class="teleport-btn" onclick="teleportTo('potions-class')">🧪 Potions Class</button>
-                    <button class="teleport-btn" onclick="teleportTo('quidditch-field')">🏁 Quidditch Field</button>
-                    <button class="teleport-btn" onclick="teleportTo('forbidden-forest')">🌲 Forbidden Forest</button>
-                    <button class="teleport-btn" onclick="teleportTo('crystal-cave')">💎 Crystal Cave</button>
+                    <button class="teleport-btn" onclick="teleportTo('asimoverse')">📖 Asimoverse</button>
+                    <button class="teleport-btn" onclick="teleportTo('einstein-lab')">🧪 Einstein Lab</button>
+                    <button class="teleport-btn" onclick="teleportTo('k-space')">🚀 KSpace</button>
+                    <button class="teleport-btn" onclick="teleportTo('shop')">🛒 Shop</button>
                 </div>
             </div>
         </div>
 
-        <!-- Library -->
-        <div class="location library" id="library">
-            <div class="location-special-effects" id="libraryEffects"></div>
+        <!-- Asimoverse -->
+        <div class="location asimoverse" id="asimoverse">
+            <div class="location-special-effects" id="asimoverseEffects"></div>
             <div class="location-info">
-                <h2 class="location-title">📚 The Magical Library</h2>
+                <h2 class="location-title">📖 Asimoverse</h2>
                 <p class="location-description">
-                    Towering shelves filled with ancient spellbooks and magical tomes surround you. 
-                    The air smells of old parchment and mysterious potions. Some books flutter their 
-                    pages when you walk by, eager to share their secrets. Floating books drift lazily through the air.
+                    The webpage "CuriousAtoms - Cosmic Adventures for Every Explorer" offers a variety of storybooks, comics, and interactive adventures designed to engage users with STEM concepts, fostering curiosity and creativity. It emphasizes educational value by integrating STEM ingenuity into its cosmic-themed content, suitable for explorers seeking thrilling tales or quirky comics. The site also invites user feedback to enhance the experience, encouraging participation in its creative and educational offerings.
                 </p>
+                <button class="visit-btn" onclick="window.open('https://www.curiousatoms.com/books.html', '_blank')">Visit Site</button>
                 <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
-                    <button class="teleport-btn" onclick="teleportTo('potions-class')">🧪 Potions Class</button>
-                    <button class="teleport-btn" onclick="teleportTo('quidditch-field')">🏁 Quidditch Field</button>
-                    <button class="teleport-btn" onclick="teleportTo('forbidden-forest')">🌲 Forbidden Forest</button>
-                    <button class="teleport-btn" onclick="teleportTo('crystal-cave')">💎 Crystal Cave</button>
+                    <button class="teleport-btn" onclick="teleportTo('ed-gamers')">🎮 EdGamers</button>
+                    <button class="teleport-btn" onclick="teleportTo('einstein-lab')">🧪 Einstein Lab</button>
+                    <button class="teleport-btn" onclick="teleportTo('k-space')">🚀 KSpace</button>
+                    <button class="teleport-btn" onclick="teleportTo('shop')">🛒 Shop</button>
                 </div>
             </div>
         </div>
 
-        <!-- Potions Class -->
-        <div class="location potions-class" id="potions-class">
-            <div class="location-special-effects" id="potionsEffects"></div>
+        <!-- Einstein Lab -->
+        <div class="location einstein-lab" id="einstein-lab">
+            <div class="location-special-effects" id="einsteinLabEffects"></div>
             <div class="location-info">
-                <h2 class="location-title">🧪 Potions Classroom</h2>
+                <h2 class="location-title">🧪 Einstein Lab</h2>
                 <p class="location-description">
-                    Bubbling cauldrons and mysterious ingredients fill this dimly lit dungeon classroom. 
-                    Shelves lined with jars containing pickled creatures and rare herbs create an 
-                    atmosphere of magical experimentation. The air shimmers with potion vapors and glowing bubbles.
+                    The Einstein Lab on CuriousAtoms offers a variety of interactive STEM activities for kids, including daily science questions, STEM Poker Cards, and a 3D body exploration adventure, designed to ignite curiosity and imagination in science, technology, engineering, and math. It also features resources like educational videos from Khan Academy and NASA, AI learning buddies, and upcoming features such as chatting with scientists and tracking the International Space Station, providing a comprehensive platform for STEM education. Additionally, it includes cosmic challenges, downloadable activities, and a weekly lucky draw with STEM prizes to encourage engagement and learning.
                 </p>
+                <button class="visit-btn" onclick="window.open('https://www.curiousatoms.com/einsteinlab.html', '_blank')">Visit Site</button>
                 <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
-                    <button class="teleport-btn" onclick="teleportTo('library')">📚 Library</button>
-                    <button class="teleport-btn" onclick="teleportTo('quidditch-field')">🏁 Quidditch Field</button>
-                    <button class="teleport-btn" onclick="teleportTo('forbidden-forest')">🌲 Forbidden Forest</button>
-                    <button class="teleport-btn" onclick="teleportTo('crystal-cave')">💎 Crystal Cave</button>
+                    <button class="teleport-btn" onclick="teleportTo('ed-gamers')">🎮 EdGamers</button>
+                    <button class="teleport-btn" onclick="teleportTo('asimoverse')">📖 Asimoverse</button>
+                    <button class="teleport-btn" onclick="teleportTo('k-space')">🚀 KSpace</button>
+                    <button class="teleport-btn" onclick="teleportTo('shop')">🛒 Shop</button>
                 </div>
             </div>
         </div>
 
-        <!-- Quidditch Field -->
-        <div class="location quidditch-field" id="quidditch-field">
-            <div class="location-special-effects" id="quidditchEffects"></div>
+        <!-- KSpace -->
+        <div class="location k-space" id="k-space">
+            <div class="location-special-effects" id="kSpaceEffects"></div>
             <div class="location-info">
-                <h2 class="location-title">🏁 Quidditch Field</h2>
+                <h2 class="location-title">🚀 KSpace</h2>
                 <p class="location-description">
-                    The vast green field stretches before you with golden goalposts reaching toward 
-                    the sky. You can almost hear the cheers of spectators and see the golden snitch 
-                    glinting in the sunlight. Broomsticks zoom overhead in practice flights.
+                    The webpage "Space Odyssey - CuriousAtoms" offers interactive educational content focused on space exploration, including rocket building challenges, planet explorer games, and DIY rocket experiments, which teach concepts in physics and engineering. It provides virtual space tours and starry curiosity quests that encourage creative thinking and learning about the solar system, making it valuable for STEM education through engaging, hands-on activities and puzzles. Additionally, it features a lucky goodies draw with space-related prizes to further inspire interest in space science.
                 </p>
+                <button class="visit-btn" onclick="window.open('https://www.curiousatoms.com/space.html', '_blank')">Visit Site</button>
                 <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
-                    <button class="teleport-btn" onclick="teleportTo('library')">📚 Library</button>
-                    <button class="teleport-btn" onclick="teleportTo('potions-class')">🧪 Potions Class</button>
-                    <button class="teleport-btn" onclick="teleportTo('forbidden-forest')">🌲 Forbidden Forest</button>
-                    <button class="teleport-btn" onclick="teleportTo('crystal-cave')">💎 Crystal Cave</button>
+                    <button class="teleport-btn" onclick="teleportTo('ed-gamers')">🎮 EdGamers</button>
+                    <button class="teleport-btn" onclick="teleportTo('asimoverse')">📖 Asimoverse</button>
+                    <button class="teleport-btn" onclick="teleportTo('einstein-lab')">🧪 Einstein Lab</button>
+                    <button class="teleport-btn" onclick="teleportTo('shop')">🛒 Shop</button>
                 </div>
             </div>
         </div>
 
-        <!-- Forbidden Forest -->
-        <div class="location forbidden-forest" id="forbidden-forest">
-            <div class="location-special-effects" id="forestEffects"></div>
+        <!-- Shop -->
+        <div class="location shop" id="shop">
+            <div class="location-special-effects" id="shopEffects"></div>
             <div class="location-info">
-                <h2 class="location-title">🌲 The Forbidden Forest</h2>
+                <h2 class="location-title">🛒 Shop</h2>
                 <p class="location-description">
-                    Dark, ancient trees tower above you, their branches creating a canopy that blocks 
-                    most of the sunlight. Strange sounds echo through the forest, and glowing eyes 
-                    peer from the shadows. This magical place is full of mystery and wonder.
+                    This webpage, titled "Space Odyssey - CuriousAtoms," offers a variety of interactive and educational activities focused on space science, including rocket building challenges, planet explorer games, and DIY rocket experiments, which teach concepts in physics and engineering. It also features starry fun facts, quizzes, virtual space tours, and humorous space memes, providing an engaging way for users to learn about the universe and earn rewards through a lucky draw with space-related prizes. These activities are designed to inspire and educate the next generation of space scientists through hands-on and curiosity-driven learning experiences.
                 </p>
+                <button class="visit-btn" onclick="window.open('https://www.curiousatoms.com/shop.html', '_blank')">Visit Site</button>
                 <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
-                    <button class="teleport-btn" onclick="teleportTo('library')">📚 Library</button>
-                    <button class="teleport-btn" onclick="teleportTo('potions-class')">🧪 Potions Class</button>
-                    <button class="teleport-btn" onclick="teleportTo('quidditch-field')">🏁 Quidditch Field</button>
-                    <button class="teleport-btn" onclick="teleportTo('crystal-cave')">💎 Crystal Cave</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Crystal Cave -->
-        <div class="location crystal-cave" id="crystal-cave">
-            <div class="location-special-effects" id="crystalEffects"></div>
-            <div class="location-info">
-                <h2 class="location-title">💎 The Crystal Cave</h2>
-                <p class="location-description">
-                    A breathtaking underground cavern filled with luminescent crystals that pulse with 
-                    magical energy. The walls shimmer with blues and purples, and the air hums with 
-                    ancient magic. This is where the most powerful spells are born from crystal energy.
-                </p>
-                <div class="teleport-buttons">
-                    <button class="teleport-btn" onclick="teleportTo('great-hall')">🏰 Great Hall</button>
-                    <button class="teleport-btn" onclick="teleportTo('library')">📚 Library</button>
-                    <button class="teleport-btn" onclick="teleportTo('potions-class')">🧪 Potions Class</button>
-                    <button class="teleport-btn" onclick="teleportTo('quidditch-field')">🏁 Quidditch Field</button>
-                    <button class="teleport-btn" onclick="teleportTo('forbidden-forest')">🌲 Forbidden Forest</button>
+                    <button class="teleport-btn" onclick="teleportTo('ed-gamers')">🎮 EdGamers</button>
+                    <button class="teleport-btn" onclick="teleportTo('asimoverse')">📖 Asimoverse</button>
+                    <button class="teleport-btn" onclick="teleportTo('einstein-lab')">🧪 Einstein Lab</button>
+                    <button class="teleport-btn" onclick="teleportTo('k-space')">🚀 KSpace</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let currentLocation = 'great-hall';
+        let currentLocation = 'ed-gamers';
         let teleportCount = 0;
-        let visitedLocations = new Set(['great-hall']);
+        let visitedLocations = new Set(['ed-gamers']);
         let soundEnabled = true;
         let selectedAvatar = '🔮';
-        let playerName = 'Young Wizard';
+        let playerName = 'Young Explorer';
 
         const locations = {
-            'great-hall': 'The Great Hall',
-            'library': 'The Magical Library',
-            'potions-class': 'Potions Classroom',
-            'quidditch-field': 'Quidditch Field',
-            'forbidden-forest': 'The Forbidden Forest',
-            'crystal-cave': 'The Crystal Cave'
+            'ed-gamers': 'EdGamers',
+            'asimoverse': 'Asimoverse',
+            'einstein-lab': 'Einstein Lab',
+            'k-space': 'KSpace',
+            'shop': 'Shop'
         };
 
         const achievements = [
-            { trigger: 1, message: "🎉 First Teleportation! Magic is in the air!" },
-            { trigger: 5, message: "✨ Teleportation Pro! You've teleported 5 times!" },
-            { trigger: 10, message: "🚀 Master of Portals! 10 teleports achieved!" },
-            { trigger: 3, message: "🌍 Explorer! You've visited 3 unique locations!" },
-            { trigger: 6, message: "🏆 Grand Adventurer! All locations discovered!" }
+            { trigger: 1, message: "🎉 First Discovery! Adventure begins!" },
+            { trigger: 5, message: "✨ Exploration Pro! You've teleported 5 times!" },
+            { trigger: 10, message: "🚀 Master Explorer! 10 teleports achieved!" },
+            { trigger: 3, message: "🌍 Adventurer! You've visited 3 unique locations!" },
+            { trigger: 5, message: "🏆 Ultimate Discoverer! All locations explored!" }
         ];
 
         // Audio elements for teleport and background sounds
@@ -732,7 +720,7 @@
             document.getElementById('playerProfile').style.display = 'block';
             document.getElementById('soundToggle').style.display = 'flex';
             createMagicParticles();
-            createLocationEffects('great-hall');
+            createLocationEffects('ed-gamers');
             if (soundEnabled) {
                 backgroundMusic.play();
             }
@@ -769,8 +757,8 @@
             document.getElementById('teleportCount').textContent = teleportCount;
             document.getElementById('locationCount').textContent = visitedLocations.size;
 
-            // Update magic level
-            updateMagicLevel();
+            // Update STEM level
+            updateStemLevel();
 
             // Create location-specific effects
             createLocationEffects(locationId);
@@ -779,17 +767,17 @@
             checkAchievements();
         }
 
-        // Update magic level based on teleport count
-        function updateMagicLevel() {
-            let level = 'Apprentice';
+        // Update STEM level based on teleport count
+        function updateStemLevel() {
+            let level = 'Apprentice Explorer';
             if (teleportCount >= 10) {
-                level = 'Master Wizard';
+                level = 'Master Explorer';
             } else if (teleportCount >= 5) {
-                level = 'Journeyman';
+                level = 'Expert Explorer';
             } else if (teleportCount >= 2) {
-                level = 'Novice';
+                level = 'Novice Explorer';
             }
-            document.getElementById('magicLevel').textContent = level;
+            document.getElementById('stemLevel').textContent = level;
         }
 
         // Create magical particles
@@ -814,11 +802,11 @@
 
         // Create location-specific effects
         function createLocationEffects(locationId) {
-            const effectsContainer = document.getElementById(`${locationId}Effects`);
+            const effectsContainer = document.getElementById(`${locationId.replace('-', '')}Effects`);
             effectsContainer.innerHTML = ''; // Clear previous effects
 
             switch (locationId) {
-                case 'library':
+                case 'asimoverse':
                     for (let i = 0; i < 5; i++) {
                         const book = document.createElement('div');
                         book.classList.add('floating-books');
@@ -829,7 +817,7 @@
                         effectsContainer.appendChild(book);
                     }
                     break;
-                case 'potions-class':
+                case 'einstein-lab':
                     for (let i = 0; i < 8; i++) {
                         const bubble = document.createElement('div');
                         bubble.classList.add('potion-bubbles');
@@ -838,27 +826,27 @@
                         effectsContainer.appendChild(bubble);
                     }
                     break;
-                case 'quidditch-field':
-                    const snitch = document.createElement('div');
-                    snitch.classList.add('flying-snitch');
-                    snitch.textContent = '🏐';
-                    snitch.style.animationDelay = `${Math.random() * 2}s`;
-                    effectsContainer.appendChild(snitch);
+                case 'k-space':
+                    const rocket = document.createElement('div');
+                    rocket.classList.add('flying-rocket');
+                    rocket.textContent = '🚀';
+                    rocket.style.animationDelay = `${Math.random() * 2}s`;
+                    effectsContainer.appendChild(rocket);
                     break;
-                case 'forbidden-forest':
+                case 'shop':
                     for (let i = 0; i < 6; i++) {
-                        const eyes = document.createElement('div');
-                        eyes.classList.add('glowing-eyes');
-                        eyes.style.left = `${Math.random() * 90 + 5}%`;
-                        eyes.style.top = `${Math.random() * 80 + 10}%`;
-                        eyes.style.animationDelay = `${Math.random() * 2}s`;
-                        effectsContainer.appendChild(eyes);
+                        const item = document.createElement('div');
+                        item.classList.add('glowing-items');
+                        item.style.left = `${Math.random() * 90 + 5}%`;
+                        item.style.top = `${Math.random() * 80 + 10}%`;
+                        item.style.animationDelay = `${Math.random() * 2}s`;
+                        effectsContainer.appendChild(item);
                     }
                     break;
-                case 'crystal-cave':
+                case 'ed-gamers':
                     for (let i = 0; i < 10; i++) {
                         const sparkle = document.createElement('div');
-                        sparkle.classList.add('crystal-sparkles');
+                        sparkle.classList.add('game-sparkles');
                         sparkle.style.left = `${Math.random() * 90 + 5}%`;
                         sparkle.style.top = `${Math.random() * 80 + 10}%`;
                         sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
@@ -866,7 +854,6 @@
                     }
                     break;
                 default:
-                    // No specific effects for Great Hall
                     break;
             }
         }
@@ -887,7 +874,7 @@
             achievements.forEach(achievement => {
                 if (
                     (achievement.trigger === teleportCount && teleportCount <= 10) ||
-                    (achievement.trigger === visitedLocations.size && visitedLocations.size <= 6)
+                    (achievement.trigger === visitedLocations.size && visitedLocations.size <= 5)
                 ) {
                     showAchievement(achievement.message);
                 }
